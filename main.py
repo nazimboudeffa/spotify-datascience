@@ -33,11 +33,21 @@ def json_to_csv():
         for artist in artists["artists"]["items"]:
             f.write(f"{artist['name']};{artist['popularity']}\n")
 
+def sort_csv():
+    with open("artists.csv") as f:
+        artists = f.readlines()
+    artists = [artist.strip().split(";") for artist in artists]
+    artists = sorted(artists, key=lambda x: int(x[1]), reverse=True)
+    with open("artists.csv", "w") as f:
+        for artist in artists:
+            f.write(f"{artist[0]};{artist[1]}\n")
+
 def main():
     token = get_token()
     artists = search_artists(token)
     save_artists(artists)
     json_to_csv()
+    sort_csv()
 
 if __name__ == "__main__":
     main()
