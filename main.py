@@ -18,7 +18,7 @@ def get_token():
 def search_artists(token):
     url = "https://api.spotify.com/v1/search"
     headers = {"Authorization": f"Bearer {token}"}
-    parama = {"q": "genre:rai", "type": "artist", "market": "DZ", "limit": 50}
+    parama = {"q": "genre:dance", "type": "artist", "market": "DZ", "limit": 50}
     response = get(url, headers=headers, params=parama)
     return response.json()
 
